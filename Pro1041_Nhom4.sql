@@ -7,7 +7,7 @@ create table SanPham(
 );
 
 --Bang kieu dang
-create table HinhDang(
+create table KieuDang(
 	MaKD nvarchar(10) primary key,
 	TenKD nvarchar(20) not null,
 	MoTa nvarchar(20)
@@ -62,6 +62,23 @@ create table ThuongHieu(
 	MoTa nvarchar(20)
 );
 
+-- Bang Chi tiet san pham
+create table ChiTietSanPham(
+	MaCTSP int identity(1,1) primary key,
+	MaSP nvarchar(10) references SanPham(MaSP),
+	MaKD nvarchar(10) references KieuDang(MaKD),
+	MaLMK nvarchar(10) references LoaiMatKinh(MaLMK),
+	MaMMK nvarchar(10) references MauMatKinh(MaMMK),
+	MaCLMK nvarchar(10) references ChatLieuMatKinh(MaCLMK),
+	MaCLG nvarchar(10) references ChatLieuGong(MaCLG),
+	MaMG nvarchar(10) references MauGong(MaMG),
+	MaKC nvarchar(10) references KichCo(MaKC),
+	MaTH nvarchar(10) references ThuongHieu(MaTH),
+	SoLuong int,
+	GiaBan float,
+	NgayNhap date,
+);
+
 -- Table Khach hang
 create table KhachHang(
 	MaKH nvarchar(10) primary key,
@@ -72,4 +89,32 @@ create table KhachHang(
 	Email varchar(50),
 	CCCD nchar(12),
 );
+
+-- Bang Vai tro
+create table VaiTro(
+	MaVT int identity(1,1) primary key,
+	TenVT nvarchar(20),
+	MoTa nvarchar(20)
+);
+
+-- Bang Nhan vien
+create table NhanVien(
+	MaNV nvarchar(10) primary key,
+	HoTen nvarchar(30),
+	GioiTinh bit,
+	DiaChi nvarchar(100),
+	SDT varchar(12),
+	Email varchar(50),
+	CCCD nchar(12),
+	MaVT int references VaiTro(MaVT)
+);
+
+-- Bang Hinh thuc thanh toan
+create table HinhThucThanhToan(
+	MaHTTT bit primary key,
+	TenHTTT nvarchar(20),
+	MoTa nvarchar(20)
+);
+
+
 
