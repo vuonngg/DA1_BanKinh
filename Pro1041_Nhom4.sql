@@ -63,8 +63,8 @@ create table ThuongHieu(
 );
 
 -- Bang Chi tiet san pham
-create table ChiTietSanPham(
-	MaCTSP int identity(1,1) primary key,
+create table SanPhamChiTiet(
+	MaSPCT int identity(1,1) primary key,
 	MaSP nvarchar(10) references SanPham(MaSP),
 	MaKD nvarchar(10) references KieuDang(MaKD),
 	MaLMK nvarchar(10) references LoaiMatKinh(MaLMK),
@@ -109,6 +109,13 @@ create table NhanVien(
 	MaVT int references VaiTro(MaVT)
 );
 
+-- Bang Hinh thuc giam gia
+create table HinhThucGiamGia(
+	MaHTGG bit primary key,
+	TenHTGG nvarchar(20) not null,
+	MoTa nvarchar(20),
+);
+
 -- Bang Hinh thuc thanh toan
 create table HinhThucThanhToan(
 	MaHTTT bit primary key,
@@ -117,4 +124,71 @@ create table HinhThucThanhToan(
 );
 
 
+-- Bang Trang thai
+create table TrangThai(
+	MaTT int primary key,
+	TenTT nvarchar(20) not null,
+	MoTa nvarchar(20)
+);
 
+-- Bang Voucher
+create table PhieuGiamGia(
+	MaPGG nvarchar(10) primary key,
+	TenPGG nvarchar(20),
+	DieuKienGiam float not null,
+	GiaGiamToiDa float not null,
+	SoLuong int,
+	NgayTao date,
+	NgayBatDau date,
+	NgayKetThuc date,
+	MaHTGG bit references HinhThucGiamGia(MaHTGG)
+);
+
+-- Bang Hoa don
+create table HoaDon(
+	MaHD nvarchar(100) primary key,
+	MaPGG nvarchar(10) references PhieuGiamGia(MaPGG),
+	MaHTTT bit references HinhThucThanhToan(MaHTTT),
+	MaTT int references TrangThai(MaTT),
+	NgayTao date,
+	GiaBanDau float,
+	GiaGiam float,
+	GiaCuoiCung float,
+	TenKhachHang nvarchar(30),
+	DiaChi nvarchar(100),
+	SDT nvarchar(12)
+);
+
+-- Bang Hoa don chi tiet
+create table HoaDonChiTiet(
+	MaHDCT int primary key,
+	MaHD nvarchar(100) references HoaDon(MaHD),
+	MaSPCt int references SanPhamChiTiet(MaSPCT),
+	SoLuong int,
+	DonGia float,
+	ThanhTien float,
+);
+
+-- Bang Account
+create table Account(
+	TaiKhoan nvarchar(20) primary key,
+	MatKhau nvarchar(20) not null,
+	MaNV nvarchar(10) references NhanVien(MaNV),
+	SDT varchar(12),
+);
+
+-- Bang Cong viec
+create table CongViec(
+	MaCV int primary key,
+	TenCV nvarchar(20),
+	MoTa nvarchar(20),
+);
+
+-- Bang Lich su hoa don
+create table LichSuHoaDon(
+	MaLSHD int primary key,
+	MaHD nvarchar(100) references HoaDon(MaHD),
+	MaNV nvarchar(10) references NhanVien(MaNV),
+	MaCV int references CongViec(MaCV),
+	NgayThucHien date,
+);
