@@ -146,6 +146,7 @@ create table PhieuGiamGia(
 -- Bang Hoa don
 create table HoaDon(
 	MaHD nvarchar(100) primary key,
+	MaKH nvarchar(10) references KhachHang(MaKH),
 	MaPGG nvarchar(10) references PhieuGiamGia(MaPGG),
 	MaHTTT bit references HinhThucThanhToan(MaHTTT),
 	MaTT int references TrangThai(MaTT),
@@ -157,6 +158,7 @@ create table HoaDon(
 	DiaChi nvarchar(100),
 	SDT nvarchar(12)
 );
+
 
 -- Bang Hoa don chi tiet
 create table HoaDonChiTiet(
@@ -193,3 +195,12 @@ create table LichSuHoaDon(
 );
 
 
+select hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi 
+from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT
+join TrangThai tt on hd.MaTT = tt.MaTT 
+join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG
+
+select lshd.MaLSHD, lshd.MaNV,cv.TenCV,lshd.NgayThucHien
+from LichSuHoaDon lshd join CongViec cv on lshd.MaCV = cv.MaCV
+
+select  hdct.SoLuong,hdct.DonGia,hdct.ThanhTien from HoaDonChiTiet hdct

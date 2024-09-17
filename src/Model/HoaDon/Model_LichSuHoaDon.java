@@ -12,26 +12,29 @@ public class Model_LichSuHoaDon {
     private int maLSHD;
     private String maHD;
     private String maNV;
-    private String maCV;
+    private String tenCV;
     private String thoiGian;
 
     public Model_LichSuHoaDon() {
     }
 
-    public Model_LichSuHoaDon(int maLSHD, String maHD, String maNV, String maCV, String thoiGian) {
+    public Model_LichSuHoaDon(int maLSHD, String maHD, String maNV, String tenCV, String thoiGian) {
         this.maLSHD = maLSHD;
         this.maHD = maHD;
         this.maNV = maNV;
-        this.maCV = maCV;
+        this.tenCV = tenCV;
         this.thoiGian = thoiGian;
     }
 
-    public Model_LichSuHoaDon(String maHD, String maNV, String maCV, String thoiGian) {
-        this.maHD = maHD;
+    public Model_LichSuHoaDon(int maLSHD, String maNV, String tenCV, String thoiGian) {
+        this.maLSHD = maLSHD;
         this.maNV = maNV;
-        this.maCV = maCV;
+        this.tenCV = tenCV;
         this.thoiGian = thoiGian;
     }
+
+    
+    
 
     public int getMaLSHD() {
         return maLSHD;
@@ -57,13 +60,16 @@ public class Model_LichSuHoaDon {
         this.maNV = maNV;
     }
 
-    public String getMaCV() {
-        return maCV;
+    public String getTenCV() {
+        return tenCV;
     }
 
-    public void setMaCV(String maCV) {
-        this.maCV = maCV;
+    public void setTenCV(String tenCV) {
+        this.tenCV = tenCV;
     }
+
+    
+    
 
     public String getThoiGian() {
         return thoiGian;
@@ -73,5 +79,7 @@ public class Model_LichSuHoaDon {
         this.thoiGian = thoiGian;
     }
     
-    
+    public Object[] toTable(){
+        return new Object[]{this.getMaLSHD(),this.getMaNV(),this.getTenCV(),this.getThoiGian()};
+    }
 }
