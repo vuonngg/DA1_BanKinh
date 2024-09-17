@@ -82,7 +82,6 @@ create table SanPhamChiTiet(
 -- Table Khach hang
 create table KhachHang(
 	MaKH nvarchar(10) primary key,
-	HoKH nvarchar(20) not null,
 	TenKH nvarchar(20) not null,
 	DiaChi nvarchar(100),
 	SDT varchar(15) not null,
@@ -192,4 +191,5 @@ create table LichSuHoaDon(
 	MaCV int references CongViec(MaCV),
 	NgayThucHien date,
 );
+
 
