@@ -186,9 +186,10 @@ create table CongViec(
 
 -- Bang Lich su hoa don
 create table LichSuHoaDon(
-	MaLSHD int primary key,
+	MaLSHD int identity(1,1) primary key,
 	MaHD nvarchar(100) references HoaDon(MaHD),
 	MaNV nvarchar(10) references NhanVien(MaNV),
 	MaCV int references CongViec(MaCV),
 	NgayThucHien date,
 );
+
