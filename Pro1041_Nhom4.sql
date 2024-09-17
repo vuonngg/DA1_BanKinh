@@ -163,12 +163,11 @@ create table HoaDon(
 create table HoaDonChiTiet(
 	MaHDCT int identity(1,1) primary key,
 	MaHD nvarchar(100) references HoaDon(MaHD),
-	MaSPCt int references SanPhamChiTiet(MaSPCT),
+	MaSPCT int references SanPhamChiTiet(MaSPCT),
 	SoLuong int,
 	DonGia float,
 	ThanhTien float,
 );
-
 
 -- Bang Account
 create table Account(
