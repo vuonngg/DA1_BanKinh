@@ -8,15 +8,15 @@ package Model.HoaDon;
  *
  * @author acer
  */
-public class TrangThai {
+public class Model_TrangThai {
     private int maTT;
     private String tenTT;
     private String moTa;
 
-    public TrangThai() {
+    public Model_TrangThai() {
     }
 
-    public TrangThai(int maTT, String tenTT, String moTa) {
+    public Model_TrangThai(int maTT, String tenTT, String moTa) {
         this.maTT = maTT;
         this.tenTT = tenTT;
         this.moTa = moTa;

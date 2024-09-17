@@ -8,21 +8,21 @@ package Model.HoaDon;
  *
  * @author acer
  */
-public class CongViec {
+public class Model_CongViec {
     private int maCV;
     private String tenCV;
     private String moTa;
 
-    public CongViec() {
+    public Model_CongViec() {
     }
 
-    public CongViec(int maCV, String tenCV, String moTa) {
+    public Model_CongViec(int maCV, String tenCV, String moTa) {
         this.maCV = maCV;
         this.tenCV = tenCV;
         this.moTa = moTa;
     }
 
-    public CongViec(String tenCV, String moTa) {
+    public Model_CongViec(String tenCV, String moTa) {
         this.tenCV = tenCV;
         this.moTa = moTa;
     }
