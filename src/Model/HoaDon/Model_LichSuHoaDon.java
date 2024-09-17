@@ -32,6 +32,46 @@ public class Model_LichSuHoaDon {
         this.maCV = maCV;
         this.thoiGian = thoiGian;
     }
+
+    public int getMaLSHD() {
+        return maLSHD;
+    }
+
+    public void setMaLSHD(int maLSHD) {
+        this.maLSHD = maLSHD;
+    }
+
+    public String getMaHD() {
+        return maHD;
+    }
+
+    public void setMaHD(String maHD) {
+        this.maHD = maHD;
+    }
+
+    public String getMaNV() {
+        return maNV;
+    }
+
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
+    }
+
+    public String getMaCV() {
+        return maCV;
+    }
+
+    public void setMaCV(String maCV) {
+        this.maCV = maCV;
+    }
+
+    public String getThoiGian() {
+        return thoiGian;
+    }
+
+    public void setThoiGian(String thoiGian) {
+        this.thoiGian = thoiGian;
+    }
     
     
 }
