@@ -203,4 +203,15 @@ join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG
 select lshd.MaLSHD, lshd.MaNV,cv.TenCV,lshd.NgayThucHien
 from LichSuHoaDon lshd join CongViec cv on lshd.MaCV = cv.MaCV
 
-select  hdct.SoLuong,hdct.DonGia,hdct.ThanhTien from HoaDonChiTiet hdct
+select sp.TenSP,th.TenTH,kd.TenKD,lmk.TenLMK,mmk.TenMMK,clmk.TenCLMK,clmk.TenCLMK,clg.TenCLG,mg.TenMG,Kc.TenKC,hdct.SoLuong,hdct.DonGia,hdct.SoLuong * hdct.DonGia as 'Thanh Tien'
+from HoaDonChiTiet hdct join SanPhamChiTiet spct on hdct.MaSPCT = spct.MaSPCT
+join SanPham sp on sp.MaSP = spct.MaSP
+join ThuongHieu th on spct.MaTH = th.MaTH
+join KieuDang kd on spct.MaKD = kd.MaKD
+join LoaiMatKinh lmk on lmk.MaLMK = spct.MaLMK
+join MauMatKinh mmk on mmk.MaMMK = spct.MaMMK
+join ChatLieuMatKinh clmk on clmk.MaCLMK = spct.MaCLMK
+join ChatLieuGong clg on spct.MaCLG = clg.MaCLG
+join MauGong mg on mg.MaMG = spct.MaMG
+join KichCo kc on kc.MaKC = spct.MaKC
+join HoaDon hd on hd.MaHD = hdct.MaHD

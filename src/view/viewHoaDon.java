@@ -67,13 +67,13 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
 
         tblHoaDonChiTiet.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tên SP", "Thương hiệu", "Kiểu dáng", "Loại mắt kính ", "Màu mắt kính", "Chất liệu mắt kính", "Chất liệu gọng", "Màu gọng", "Kích cỡ", "Số lượng", "Giá bán"
+                "Tên SP", "Thương hiệu", "Kiểu dáng", "Loại mắt kính ", "Màu mắt kính", "Chất liệu mắt kính", "Chất liệu gọng", "Màu gọng", "Kích cỡ", "Số lượng", "Giá bán", "Thành tiền"
             }
         ));
         jScrollPane1.setViewportView(tblHoaDonChiTiet);
