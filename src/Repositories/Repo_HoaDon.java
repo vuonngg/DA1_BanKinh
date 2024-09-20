@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import Model.HoaDon.*;
 import DBConnect.*;
+
 /**
  *
  * @author acer
@@ -52,7 +53,7 @@ public class Repo_HoaDon {
         }
     }
 
-    public ArrayList<Model_LichSuHoaDon> getHDCT() {
+    public ArrayList<Model_LichSuHoaDon> getLSHD() {
         ArrayList<Model_LichSuHoaDon> listlshd = new ArrayList<>();
         sql = "select lshd.MaLSHD, lshd.MaNV,cv.TenCV,lshd.NgayThucHien\n"
                 + "from LichSuHoaDon lshd join CongViec cv on lshd.MaCV = cv.MaCV";
@@ -60,16 +61,58 @@ public class Repo_HoaDon {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            while(rs.next()){
-                String ma,ten,thoigian;
+            while (rs.next()) {
+                String ma, ten, thoigian;
                 int lshd = rs.getInt(1);
                 ma = rs.getString(2);
                 ten = rs.getString(3);
                 thoigian = rs.getString(4);
-                listlshd.add(new Model_LichSuHoaDon(lshd,ma,ten,thoigian));
+                listlshd.add(new Model_LichSuHoaDon(lshd, ma, ten, thoigian));
             }
             return listlshd;
         } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public ArrayList<Model_HDCT> getHDCT() {
+        ArrayList<Model_HDCT> listhdct = new ArrayList<>();
+        sql = "select sp.TenSP,th.TenTH,kd.TenKD,lmk.TenLMK,mmk.TenMMK,clmk.TenCLMK,clg.TenCLG,mg.TenMG,Kc.TenKC,hdct.SoLuong,hdct.DonGia,hdct.SoLuong * hdct.DonGia as 'Thanh Tien'\n"
+                + "from HoaDonChiTiet hdct join SanPhamChiTiet spct on hdct.MaSPCT = spct.MaSPCT\n"
+                + "join SanPham sp on sp.MaSP = spct.MaSP\n"
+                + "join ThuongHieu th on spct.MaTH = th.MaTH\n"
+                + "join KieuDang kd on spct.MaKD = kd.MaKD\n"
+                + "join LoaiMatKinh lmk on lmk.MaLMK = spct.MaLMK\n"
+                + "join MauMatKinh mmk on mmk.MaMMK = spct.MaMMK\n"
+                + "join ChatLieuMatKinh clmk on clmk.MaCLMK = spct.MaCLMK\n"
+                + "join ChatLieuGong clg on spct.MaCLG = clg.MaCLG\n"
+                + "join MauGong mg on mg.MaMG = spct.MaMG\n"
+                + "join KichCo kc on kc.MaKC = spct.MaKC\n"
+                + "join HoaDon hd on hd.MaHD = hdct.MaHD";
+        try{
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                String tenSP,thuongHieu,kieuDang,loaiMatKinh,mauMatKinh,chatLieuMatKinh,chatLieuGong,mauGong,kichCo;
+                int soLuong;
+                double donGia, thanhTien;
+                tenSP = rs.getString(1);
+                thuongHieu = rs.getString(2);
+                kieuDang = rs.getString(3);
+                loaiMatKinh = rs.getString(4);
+                mauMatKinh = rs.getString(5);
+                chatLieuMatKinh = rs.getString(6);
+                chatLieuGong = rs.getString(7);
+                mauGong = rs.getString(8);
+                kichCo = rs.getString(9);
+                soLuong = rs.getInt(10);
+                donGia = rs.getDouble(11);
+                thanhTien = rs.getDouble(12);
+                listhdct.add(new Model_HDCT(tenSP,thuongHieu,kieuDang,loaiMatKinh,mauMatKinh,chatLieuMatKinh,chatLieuGong,mauGong,kichCo,soLuong,donGia,thanhTien));
+            }
+            return listhdct;
+        }catch(Exception e){
             return null;
         }
     }

@@ -14,7 +14,9 @@ import Model.HoaDon.*;
 public class viewHoaDon extends javax.swing.JInternalFrame {
 
     Repo_HoaDon rp = new Repo_HoaDon();
-    DefaultTableModel model = new DefaultTableModel();
+    DefaultTableModel model1 = new DefaultTableModel();
+    DefaultTableModel model2 = new DefaultTableModel();
+    DefaultTableModel model3 = new DefaultTableModel();
     int i = -1;
     /**
      * Creates new form viewHoaDon
@@ -25,12 +27,27 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
     }
     
     public void fillHoaDon(ArrayList<Model_HoaDon> list){
-        model = (DefaultTableModel) tblHoaDon.getModel();
-        model.setRowCount(0);
+        model1 = (DefaultTableModel) tblHoaDon.getModel();
+        model1.setRowCount(0);
         for(Model_HoaDon hd : list){
-            model.addRow(hd.toTable());
+            model1.addRow(hd.toTable());
         }
     }
+    public void fillLSHD(ArrayList<Model_LichSuHoaDon> list){
+        model2 = (DefaultTableModel) tblLichSuHoaDon.getModel();
+        model2.setRowCount(0);
+        for(Model_LichSuHoaDon lshd : list){
+            model2.addRow(lshd.toTable());
+        }
+    }
+    public void fillHDCT(ArrayList<Model_HDCT> list){
+        model3 = (DefaultTableModel) tblHoaDonChiTiet.getModel();
+        model3.setRowCount(0);
+        for(Model_HDCT hdct : list){
+            model3.addRow(hdct.toHDCT());
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,12 +70,12 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
         jLabel31 = new javax.swing.JLabel();
         btnInHoaDon1 = new javax.swing.JButton();
         btnInHoaDon2 = new javax.swing.JButton();
+        btnInHoaDon = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblHoaDon = new javax.swing.JTable();
-        btnInHoaDon = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tblLichSuHoaDon1 = new javax.swing.JTable();
+        tblLichSuHoaDon = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -73,7 +90,7 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tên SP", "Thương hiệu", "Kiểu dáng", "Loại mắt kính ", "Màu mắt kính", "Chất liệu mắt kính", "Chất liệu gọng", "Màu gọng", "Kích cỡ", "Số lượng", "Giá bán", "Thành tiền"
+                "Tên SP", "Thương hiệu", "Kiểu dáng", "Loại mắt kính ", "Màu mắt kính", "Chất liệu mắt kính", "Chất liệu gọng", "Màu gọng", "Kích cỡ", "Số lượng", "Đơn giá", "Thành tiền"
             }
         ));
         jScrollPane1.setViewportView(tblHoaDonChiTiet);
@@ -129,6 +146,14 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
             }
         });
 
+        btnInHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/reset-20-32.png"))); // NOI18N
+        btnInHoaDon.setText("Xuất PDF");
+        btnInHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInHoaDonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
@@ -150,14 +175,20 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
                 .addComponent(jComboBox26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(btnInHoaDon2)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(btnInHoaDon)
+                .addGap(35, 35, 35))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
                 .addContainerGap(12, Short.MAX_VALUE)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnInHoaDon1)
+                    .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnInHoaDon1)
+                        .addComponent(jComboBox28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel31)
@@ -166,12 +197,9 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnInHoaDon2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInHoaDon2)
+                    .addComponent(btnInHoaDon)))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hóa đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
@@ -206,17 +234,9 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        btnInHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/reset-20-32.png"))); // NOI18N
-        btnInHoaDon.setText("In hóa đơn");
-        btnInHoaDon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInHoaDonActionPerformed(evt);
-            }
-        });
-
         jScrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder("Lịch sử hóa đơn"));
 
-        tblLichSuHoaDon1.setModel(new javax.swing.table.DefaultTableModel(
+        tblLichSuHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -227,7 +247,7 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
                 "Mã lshd", "Mã nhân viên", "Tên công việc", "Thời gian"
             }
         ));
-        jScrollPane4.setViewportView(tblLichSuHoaDon1);
+        jScrollPane4.setViewportView(tblLichSuHoaDon);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -239,8 +259,7 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
-                                .addComponent(btnInHoaDon))
+                                .addGap(0, 296, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -253,9 +272,7 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(51, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInHoaDon, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane4)
@@ -278,7 +295,7 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
                         .addGap(458, 458, 458)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,10 +344,9 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable tblHoaDon;
     private javax.swing.JTable tblHoaDonChiTiet;
-    private javax.swing.JTable tblLichSuHoaDon1;
+    private javax.swing.JTable tblLichSuHoaDon;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }
