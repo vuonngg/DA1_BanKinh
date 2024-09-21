@@ -60,6 +60,7 @@ public class view_trangChuQuanLy extends javax.swing.JFrame {
         );
 
         jPanel1.add(bangHienThi, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 1130, 870));
+        bangHienThi.getAccessibleContext().setAccessibleDescription("");
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 

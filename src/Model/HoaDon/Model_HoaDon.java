@@ -25,6 +25,11 @@ public class Model_HoaDon {
     public Model_HoaDon() {
     }
 
+    public Model_HoaDon(String tenTT) {
+        this.tenTT = tenTT;
+    }
+    
+    
     public Model_HoaDon(String maHD, String maKH, String maPGG, String tenHTTT, String tenTT, String ngayTao, double giaBanDau, double giaGiam, double giaCuoiCung, String tenKhachHang, String sdt, String diaChi) {
         this.maHD = maHD;
         this.maKH = maKH;
