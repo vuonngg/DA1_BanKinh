@@ -9,6 +9,7 @@ package Model.HoaDon;
  * @author acer
  */
 public class Model_HoaDon {
+    private int stt;
     private String maHD;
     private String maKH;
     private String maPGG;
@@ -28,9 +29,9 @@ public class Model_HoaDon {
     public Model_HoaDon(String tenTT) {
         this.tenTT = tenTT;
     }
-    
-    
-    public Model_HoaDon(String maHD, String maKH, String maPGG, String tenHTTT, String tenTT, String ngayTao, double giaBanDau, double giaGiam, double giaCuoiCung, String tenKhachHang, String sdt, String diaChi) {
+
+    public Model_HoaDon(int stt, String maHD, String maKH, String maPGG, String tenHTTT, String tenTT, String ngayTao, double giaBanDau, double giaGiam, double giaCuoiCung, String tenKhachHang, String sdt, String diaChi) {
+        this.stt = stt;
         this.maHD = maHD;
         this.maKH = maKH;
         this.maPGG = maPGG;
@@ -44,6 +45,9 @@ public class Model_HoaDon {
         this.sdt = sdt;
         this.diaChi = diaChi;
     }
+    
+    
+    
 
     public Model_HoaDon(String maKH, String maPGG, String tenHTTT, String tenTT, String ngayTao, double giaBanDau, double giaGiam, double giaCuoiCung, String tenKhachHang, String sdt, String diaChi) {
         this.maKH = maKH;
@@ -57,6 +61,14 @@ public class Model_HoaDon {
         this.tenKhachHang = tenKhachHang;
         this.sdt = sdt;
         this.diaChi = diaChi;
+    }
+
+    public int getStt() {
+        return stt;
+    }
+
+    public void setStt(int stt) {
+        this.stt = stt;
     }
 
     
@@ -160,6 +172,6 @@ public class Model_HoaDon {
     }
 
     public Object[] toTable(){
-        return new Object[]{this.getMaHD(),this.getMaKH(),this.getMaPGG(),this.getTenHTTT(),this.getTenTT(),this.getNgayTao(),this.getGiaBanDau(),this.getGiaGiam(),this.getGiaCuoiCung(),this.getTenKhachHang(),this.getSdt(),this.getDiaChi()};
+        return new Object[]{this.getStt(),this.getMaHD(),this.getMaKH(),this.getMaPGG(),this.getTenHTTT(),this.getTenTT(),this.getNgayTao(),this.getGiaBanDau(),this.getGiaGiam(),this.getGiaCuoiCung(),this.getTenKhachHang(),this.getSdt(),this.getDiaChi()};
     }
 }

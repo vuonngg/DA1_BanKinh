@@ -10,6 +10,7 @@ package Model.HoaDon;
  */
 public class Model_LichSuHoaDon {
     private int maLSHD;
+    private int stt;
     private String maHD;
     private String maNV;
     private String tenCV;
@@ -18,30 +19,45 @@ public class Model_LichSuHoaDon {
     public Model_LichSuHoaDon() {
     }
 
-    public Model_LichSuHoaDon(int maLSHD, String maHD, String maNV, String tenCV, String thoiGian) {
+    public Model_LichSuHoaDon(int maLSHD, int stt, String maHD, String maNV, String tenCV, String thoiGian) {
         this.maLSHD = maLSHD;
+        this.stt = stt;
         this.maHD = maHD;
         this.maNV = maNV;
         this.tenCV = tenCV;
         this.thoiGian = thoiGian;
     }
 
-    public Model_LichSuHoaDon(int maLSHD, String maNV, String tenCV, String thoiGian) {
+    public Model_LichSuHoaDon(int maLSHD, int stt, String maNV, String tenCV, String thoiGian) {
         this.maLSHD = maLSHD;
+        this.stt = stt;
         this.maNV = maNV;
         this.tenCV = tenCV;
         this.thoiGian = thoiGian;
     }
 
+    public Model_LichSuHoaDon(int stt, String maNV, String tenCV, String thoiGian) {
+        this.stt = stt;
+        this.maNV = maNV;
+        this.tenCV = tenCV;
+        this.thoiGian = thoiGian;
+    }
     
     
-
     public int getMaLSHD() {
         return maLSHD;
     }
 
     public void setMaLSHD(int maLSHD) {
         this.maLSHD = maLSHD;
+    }
+
+    public int getStt() {
+        return stt;
+    }
+
+    public void setStt(int stt) {
+        this.stt = stt;
     }
 
     public String getMaHD() {
@@ -68,9 +84,6 @@ public class Model_LichSuHoaDon {
         this.tenCV = tenCV;
     }
 
-    
-    
-
     public String getThoiGian() {
         return thoiGian;
     }
@@ -78,8 +91,14 @@ public class Model_LichSuHoaDon {
     public void setThoiGian(String thoiGian) {
         this.thoiGian = thoiGian;
     }
+
+    
+
+    
+    
+
     
     public Object[] toTable(){
-        return new Object[]{this.getMaLSHD(),this.getMaNV(),this.getTenCV(),this.getThoiGian()};
+        return new Object[]{this.getStt(),this.getMaNV(),this.getTenCV(),this.getThoiGian()};
     }
 }

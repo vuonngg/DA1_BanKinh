@@ -48,18 +48,20 @@ public class view_trangChuQuanLy extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        bangHienThi.setDoubleBuffered(true);
+
         javax.swing.GroupLayout bangHienThiLayout = new javax.swing.GroupLayout(bangHienThi);
         bangHienThi.setLayout(bangHienThiLayout);
         bangHienThiLayout.setHorizontalGroup(
             bangHienThiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1130, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         bangHienThiLayout.setVerticalGroup(
             bangHienThiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 870, Short.MAX_VALUE)
         );
 
-        jPanel1.add(bangHienThi, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 1130, 870));
+        jPanel1.add(bangHienThi, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 1350, 870));
         bangHienThi.getAccessibleContext().setAccessibleDescription("");
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
@@ -200,7 +202,7 @@ public class view_trangChuQuanLy extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 870));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/chuannay.jpg"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -90, 1380, 960));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -90, 1600, 960));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,12 +212,11 @@ public class view_trangChuQuanLy extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_khachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_khachHangActionPerformed
@@ -299,7 +300,10 @@ public class view_trangChuQuanLy extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new view_trangChuQuanLy().setVisible(true);
+                
+                view_trangChuQuanLy view = new view_trangChuQuanLy();
+                view.pack();
+                view.setVisible(true);
             }
         });
     }

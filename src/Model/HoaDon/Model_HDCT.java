@@ -9,7 +9,7 @@ package Model.HoaDon;
  * @author acer
  */
 public class Model_HDCT {
-
+    private int stt;
     private String tenSP;
     private String thuongHieu;
     private String kieuDang;
@@ -26,7 +26,8 @@ public class Model_HDCT {
     public Model_HDCT() {
     }
 
-    public Model_HDCT(String tenSP, String thuongHieu, String kieuDang, String loaiMatKinh, String mauMatKinh, String chatLieuMatKinh, String chatLieuGong, String mauGong, String kichCo, int soLuong, double donGia, double thanhTien) {
+    public Model_HDCT(int STT, String tenSP, String thuongHieu, String kieuDang, String loaiMatKinh, String mauMatKinh, String chatLieuMatKinh, String chatLieuGong, String mauGong, String kichCo, int soLuong, double donGia, double thanhTien) {
+        this.stt = STT;
         this.tenSP = tenSP;
         this.thuongHieu = thuongHieu;
         this.kieuDang = kieuDang;
@@ -39,6 +40,14 @@ public class Model_HDCT {
         this.soLuong = soLuong;
         this.donGia = donGia;
         this.thanhTien = thanhTien;
+    }
+
+    public int getStt() {
+        return stt;
+    }
+
+    public void setStt(int stt) {
+        this.stt = stt;
     }
 
     public String getTenSP() {
@@ -137,7 +146,11 @@ public class Model_HDCT {
         this.thanhTien = thanhTien;
     }
 
+    
+
+    
+
     public Object[] toHDCT() {
-        return new Object[]{this.getTenSP(),this.getThuongHieu(),this.getKieuDang(),this.getLoaiMatKinh(),this.getMauMatKinh(),this.getChatLieuMatKinh(),this.getChatLieuGong(),this.getMauGong(),this.getKichCo(),this.getSoLuong(),this.getDonGia(),this.getTenSP()};
+        return new Object[]{this.getStt(),this.getTenSP(),this.getThuongHieu(),this.getKieuDang(),this.getLoaiMatKinh(),this.getMauMatKinh(),this.getChatLieuMatKinh(),this.getChatLieuGong(),this.getMauGong(),this.getKichCo(),this.getSoLuong(),this.getDonGia(),this.getTenSP()};
     }
 }

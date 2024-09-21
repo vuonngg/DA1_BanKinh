@@ -4,14 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/F:/DA1/DA1_BanKinh/src/view/viewHoaDon.java</file>
-            <file>file:/F:/DA1/DA1_BanKinh/src/view/viewBanHang.java</file>
             <file>file:/F:/DA1/DA1_BanKinh/src/Model/HoaDon/Model_HoaDonChiTiet.java</file>
             <file>file:/F:/DA1/DA1_BanKinh/src/Model/HoaDon/Model_HoaDon.java</file>
             <file>file:/F:/DA1/DA1_BanKinh/src/Model/HoaDon/Model_LichSuHoaDon.java</file>
-            <file>file:/F:/DA1/DA1_BanKinh/src/view/viewNhanVien.java</file>
+            <file>file:/F:/DA1/DA1_BanKinh/src/view/view_trangChuQuanLy.java</file>
             <file>file:/F:/DA1/DA1_BanKinh/src/Repositories/Repo_HoaDon.java</file>
             <file>file:/F:/DA1/DA1_BanKinh/src/Model/HoaDon/Model_HDCT.java</file>
-            <file>file:/F:/DA1/DA1_BanKinh/src/view/view_trangChuQuanLy.java</file>
         </group>
     </open-files>
 </project-private>
