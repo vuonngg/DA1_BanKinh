@@ -85,9 +85,11 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
         btnTimKiem = new javax.swing.JButton();
         txtTimKiem = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
-        btnInHoaDon2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        chkSapXep = new javax.swing.JComboBox<>();
+        btnSapXep = new javax.swing.JButton();
+        btnLoc = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblHoaDon = new javax.swing.JTable();
@@ -147,17 +149,27 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
         jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel31.setText("Tìm kiếm bằng...");
 
-        btnInHoaDon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/reset-20-32.png"))); // NOI18N
-        btnInHoaDon2.setText("Lọc");
-        btnInHoaDon2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInHoaDon2ActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Trạng thái");
 
         jLabel3.setText("Ngày");
+
+        chkSapXep.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Giá tăng dần", "Giá giảm dần", " ", " " }));
+
+        btnSapXep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/reset-20-32.png"))); // NOI18N
+        btnSapXep.setText("Sắp xếp");
+        btnSapXep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSapXepActionPerformed(evt);
+            }
+        });
+
+        btnLoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/reset-20-32.png"))); // NOI18N
+        btnLoc.setText("Lọc");
+        btnLoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -178,9 +190,13 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox27, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                .addComponent(btnInHoaDon2)
-                .addGap(86, 86, 86))
+                .addGap(18, 18, 18)
+                .addComponent(btnLoc)
+                .addGap(33, 33, 33)
+                .addComponent(chkSapXep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSapXep)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,19 +205,22 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addContainerGap(13, Short.MAX_VALUE)
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel16Layout.createSequentialGroup()
                                 .addComponent(jLabel31)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnSapXep)
+                                .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnLoc))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 39, Short.MAX_VALUE)
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cboTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnInHoaDon2)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))))
+                            .addComponent(jLabel3)
+                            .addComponent(chkSapXep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -383,17 +402,23 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnQrActionPerformed
 
-    private void btnInHoaDon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHoaDon2ActionPerformed
+    private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnInHoaDon2ActionPerformed
+    }//GEN-LAST:event_btnLocActionPerformed
+
+    private void btnSapXepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSapXepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSapXepActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnInHoaDon2;
+    private javax.swing.JButton btnLoc;
     private javax.swing.JButton btnPDF;
     private javax.swing.JButton btnQr;
+    private javax.swing.JButton btnSapXep;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JComboBox<String> cboTrangThai;
+    private javax.swing.JComboBox<String> chkSapXep;
     private javax.swing.JComboBox<String> jComboBox27;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
