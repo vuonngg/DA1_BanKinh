@@ -415,6 +415,7 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
                 this.fillHoaDon(rp.qrCode(rs.getText()));
                 this.fillHDCT(rp.getHDCT(rs.getText()));
                 this.fillLSHD(rp.getLSHD(rs.getText()));
+                System.out.println(rs.getText());
                 break;  // Thoát sau khi quét thành công
                 
             } catch (Exception e) {
