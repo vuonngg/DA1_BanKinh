@@ -73,10 +73,12 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
             model3.addRow(hdct.toHDCT());
         }
     }
+
     static {
         // Load thư viện OpenCV
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
+
     public BufferedImage matToBufferedImage(Mat mat) {
         Mat mat2 = new Mat();
         Imgproc.cvtColor(mat, mat2, Imgproc.COLOR_BGR2RGB);  // Chuyển từ BGR sang RGB
@@ -392,7 +394,7 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
 
     private void btnQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQrActionPerformed
         // TODO add your handling code here:
-        
+
         VideoCapture capture = new VideoCapture(0);  // Mở webcam
 
         if (!capture.isOpened()) {
@@ -413,11 +415,11 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
                 Result rs = new MultiFormatReader().decode(binaryBitmap);
                 JOptionPane.showMessageDialog(this, "Quét thành công");
                 this.fillHoaDon(rp.qrCode(rs.getText()));
-                this.fillHDCT(rp.getHDCT(rs.getText()));
-                this.fillLSHD(rp.getLSHD(rs.getText()));
-                System.out.println(rs.getText());
+//                this.fillHDCT(rp.getHDCT(rs.getText()));
+//                this.fillLSHD(rp.getLSHD(rs.getText()));
+
                 break;  // Thoát sau khi quét thành công
-                
+
             } catch (Exception e) {
                 // Không tìm thấy mã QR, tiếp tục quét
             }
@@ -448,7 +450,7 @@ public class viewHoaDon extends javax.swing.JInternalFrame {
             } else {
                 this.fillHoaDon(rp.sort2HoaDon());
             }
-        }else{
+        } else {
             if (s.equals("Giá tăng dần")) {
                 this.fillHoaDon(rp.sort3HoaDon());
             } else {

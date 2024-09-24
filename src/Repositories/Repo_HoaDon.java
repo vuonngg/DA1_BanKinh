@@ -22,7 +22,7 @@ public class Repo_HoaDon {
 
     public ArrayList<Model.HoaDon.Model_HoaDon> getHoaDon() {
         ArrayList<Model_HoaDon> listhd = new ArrayList<>();
-        sql = "select ROW_NUMBER() over(order by MaHD) as STT,hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi \n"
+        sql = "select ROW_NUMBER() over(order by MaHD) as STT,hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###'),hd.TenKhachHang,hd.SDT,hd.DiaChi \n"
                 + "from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT\n"
                 + "join TrangThai tt on hd.MaTT = tt.MaTT \n"
                 + "join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG\n"
@@ -32,8 +32,8 @@ public class Repo_HoaDon {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc;
-                double giadau, giagiam, giacuoi;
+                String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc, giacuoi;
+                double giadau, giagiam;
                 int stt = rs.getInt(1);
                 hd = rs.getString(2);
                 kh = rs.getString(3);
@@ -43,7 +43,7 @@ public class Repo_HoaDon {
                 ngay = rs.getString(7);
                 giadau = rs.getDouble(8);
                 giagiam = rs.getDouble(9);
-                giacuoi = rs.getDouble(10);
+                giacuoi = rs.getString(10);
                 ten = rs.getString(11);
                 sdt = rs.getString(12);
                 dc = rs.getString(13);
@@ -81,7 +81,7 @@ public class Repo_HoaDon {
 
     public ArrayList<Model_HDCT> getHDCT(String ma) {
         ArrayList<Model_HDCT> listhdct = new ArrayList<>();
-        sql = "select ROW_NUMBER() over(order by MaHDCT) as STT, sp.TenSP,th.TenTH,kd.TenKD,lmk.TenLMK,mmk.TenMMK,clmk.TenCLMK,clg.TenCLG,mg.TenMG,Kc.TenKC,hdct.SoLuong,hdct.DonGia,hdct.SoLuong * hdct.DonGia as 'Thanh Tien'\n"
+        sql = "select ROW_NUMBER() over(order by MaHDCT) as STT, sp.TenSP,th.TenTH,kd.TenKD,lmk.TenLMK,mmk.TenMMK,clmk.TenCLMK,clg.TenCLG,mg.TenMG,Kc.TenKC,hdct.SoLuong,FORMAT(CAST(hdct.DonGia AS DECIMAL(12,0)), '#,###.###') as DonGia,FORMAT(CAST(hdct.SoLuong * hdct.DonGia AS DECIMAL(12,0)), '#,###.###') as 'Thanh Tien'\n"
                 + "from HoaDonChiTiet hdct join SanPhamChiTiet spct on hdct.MaSPCT = spct.MaSPCT\n"
                 + "join SanPham sp on sp.MaSP = spct.MaSP\n"
                 + "join ThuongHieu th on spct.MaTH = th.MaTH\n"
@@ -102,7 +102,8 @@ public class Repo_HoaDon {
             while (rs.next()) {
                 String tenSP, thuongHieu, kieuDang, loaiMatKinh, mauMatKinh, chatLieuMatKinh, chatLieuGong, mauGong, kichCo;
                 int soLuong, stt;
-                double donGia, thanhTien;
+                String donGia;
+                String thanhTien;
                 stt = rs.getInt(1);
                 tenSP = rs.getString(2);
                 thuongHieu = rs.getString(3);
@@ -114,8 +115,8 @@ public class Repo_HoaDon {
                 mauGong = rs.getString(9);
                 kichCo = rs.getString(10);
                 soLuong = rs.getInt(11);
-                donGia = rs.getDouble(12);
-                thanhTien = rs.getDouble(13);
+                donGia = rs.getString(12);
+                thanhTien = rs.getString(13);
                 listhdct.add(new Model_HDCT(stt, tenSP, thuongHieu, kieuDang, loaiMatKinh, mauMatKinh, chatLieuMatKinh, chatLieuGong, mauGong, kichCo, soLuong, donGia, thanhTien));
             }
             return listhdct;
@@ -126,21 +127,23 @@ public class Repo_HoaDon {
 
     public ArrayList<Model.HoaDon.Model_HoaDon> searchHoaDon(String ma) {
         ArrayList<Model_HoaDon> listhd = new ArrayList<>();
-        sql = "select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi \n"
+        sql = "select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###'),hd.TenKhachHang,hd.SDT,hd.DiaChi \n"
                 + "from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT\n"
                 + "join TrangThai tt on hd.MaTT = tt.MaTT \n"
                 + "join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG\n"
-                + "where hd.MaHD like ? or hd.TenKhachHang like ? or hd.MaKH like ?";
+                + "where hd.MaHD like ? or hd.TenKhachHang like ? or hd.MaKH like ? or hd.SDT like ?";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             ps.setObject(1, '%' + ma + '%');
             ps.setObject(2, '%' + ma + '%');
             ps.setObject(3, '%' + ma + '%');
+            ps.setObject(4, '%' + ma + '%');
             rs = ps.executeQuery();
             while (rs.next()) {
                 String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc;
-                double giadau, giagiam, giacuoi;
+                double giadau, giagiam;
+                String giacuoi;
                 int stt = rs.getInt(1);
                 hd = rs.getString(2);
                 kh = rs.getString(3);
@@ -150,7 +153,7 @@ public class Repo_HoaDon {
                 ngay = rs.getString(7);
                 giadau = rs.getDouble(8);
                 giagiam = rs.getDouble(9);
-                giacuoi = rs.getDouble(10);
+                giacuoi = rs.getString(10);
                 ten = rs.getString(11);
                 sdt = rs.getString(12);
                 dc = rs.getString(13);
@@ -164,7 +167,7 @@ public class Repo_HoaDon {
 
     public ArrayList<Model.HoaDon.Model_HoaDon> sort1HoaDon() {
         ArrayList<Model_HoaDon> listhd = new ArrayList<>();
-        sql = "select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi \n"
+        sql = "select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###'),hd.TenKhachHang,hd.SDT,hd.DiaChi \n"
                 + "from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT\n"
                 + "join TrangThai tt on hd.MaTT = tt.MaTT \n"
                 + "join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG\n"
@@ -175,8 +178,8 @@ public class Repo_HoaDon {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc;
-                double giadau, giagiam, giacuoi;
+                String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc, giacuoi;
+                double giadau, giagiam;
                 int stt = rs.getInt(1);
                 hd = rs.getString(2);
                 kh = rs.getString(3);
@@ -186,7 +189,7 @@ public class Repo_HoaDon {
                 ngay = rs.getString(7);
                 giadau = rs.getDouble(8);
                 giagiam = rs.getDouble(9);
-                giacuoi = rs.getDouble(10);
+                giacuoi = rs.getString(10);
                 ten = rs.getString(11);
                 sdt = rs.getString(12);
                 dc = rs.getString(13);
@@ -200,7 +203,7 @@ public class Repo_HoaDon {
 
     public ArrayList<Model.HoaDon.Model_HoaDon> sort2HoaDon() {
         ArrayList<Model_HoaDon> listhd = new ArrayList<>();
-        sql = "select ROW_NUMBER() over(order by MaHD) as STT hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi \n"
+        sql = "select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###'),hd.TenKhachHang,hd.SDT,hd.DiaChi \n"
                 + "from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT\n"
                 + "join TrangThai tt on hd.MaTT = tt.MaTT \n"
                 + "join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG\n"
@@ -211,8 +214,8 @@ public class Repo_HoaDon {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc;
-                double giadau, giagiam, giacuoi;
+                String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc, giacuoi;
+                double giadau, giagiam;
                 int stt = rs.getInt(1);
                 hd = rs.getString(2);
                 kh = rs.getString(3);
@@ -222,7 +225,7 @@ public class Repo_HoaDon {
                 ngay = rs.getString(7);
                 giadau = rs.getDouble(8);
                 giagiam = rs.getDouble(9);
-                giacuoi = rs.getDouble(10);
+                giacuoi = rs.getString(10);
                 ten = rs.getString(11);
                 sdt = rs.getString(12);
                 dc = rs.getString(13);
@@ -236,7 +239,7 @@ public class Repo_HoaDon {
 
     public ArrayList<Model.HoaDon.Model_HoaDon> sort3HoaDon() {
         ArrayList<Model_HoaDon> listhd = new ArrayList<>();
-        sql = "select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi \n"
+        sql = "select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###'),hd.TenKhachHang,hd.SDT,hd.DiaChi \n"
                 + "from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT\n"
                 + "join TrangThai tt on hd.MaTT = tt.MaTT \n"
                 + "join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG\n"
@@ -247,8 +250,8 @@ public class Repo_HoaDon {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc;
-                double giadau, giagiam, giacuoi;
+                String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc, giacuoi;
+                double giadau, giagiam;
                 int stt = rs.getInt(1);
                 hd = rs.getString(2);
                 kh = rs.getString(3);
@@ -258,7 +261,7 @@ public class Repo_HoaDon {
                 ngay = rs.getString(7);
                 giadau = rs.getDouble(8);
                 giagiam = rs.getDouble(9);
-                giacuoi = rs.getDouble(10);
+                giacuoi = rs.getString(10);
                 ten = rs.getString(11);
                 sdt = rs.getString(12);
                 dc = rs.getString(13);
@@ -272,7 +275,7 @@ public class Repo_HoaDon {
 
     public ArrayList<Model.HoaDon.Model_HoaDon> sort4HoaDon() {
         ArrayList<Model_HoaDon> listhd = new ArrayList<>();
-        sql = "select ROW_NUMBER() over(order by MaHD) as STT hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi \n"
+        sql = "select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###'),hd.TenKhachHang,hd.SDT,hd.DiaChi \n"
                 + "from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT\n"
                 + "join TrangThai tt on hd.MaTT = tt.MaTT \n"
                 + "join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG\n"
@@ -283,8 +286,8 @@ public class Repo_HoaDon {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc;
-                double giadau, giagiam, giacuoi;
+                String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc, giacuoi;
+                double giadau, giagiam;
                 int stt = rs.getInt(1);
                 hd = rs.getString(2);
                 kh = rs.getString(3);
@@ -294,7 +297,7 @@ public class Repo_HoaDon {
                 ngay = rs.getString(7);
                 giadau = rs.getDouble(8);
                 giagiam = rs.getDouble(9);
-                giacuoi = rs.getDouble(10);
+                giacuoi = rs.getString(10);
                 ten = rs.getString(11);
                 sdt = rs.getString(12);
                 dc = rs.getString(13);
@@ -318,8 +321,8 @@ public class Repo_HoaDon {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc;
-                double giadau, giagiam, giacuoi;
+                String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc, giacuoi;
+                double giadau, giagiam;
                 int stt = rs.getInt(1);
                 hd = rs.getString(2);
                 kh = rs.getString(3);
@@ -329,7 +332,7 @@ public class Repo_HoaDon {
                 ngay = rs.getString(7);
                 giadau = rs.getDouble(8);
                 giagiam = rs.getDouble(9);
-                giacuoi = rs.getDouble(10);
+                giacuoi = rs.getString(10);
                 ten = rs.getString(11);
                 sdt = rs.getString(12);
                 dc = rs.getString(13);
@@ -358,9 +361,10 @@ public class Repo_HoaDon {
             return 0;
         }
     }
-    public ArrayList<Model.HoaDon.Model_HoaDon> qrCode(String ma) {
+
+    public ArrayList<Model_HoaDon> qrCode(String ma) {
         ArrayList<Model_HoaDon> listhd = new ArrayList<>();
-        sql = "select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi \n"
+        sql = "select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###'),hd.TenKhachHang,hd.SDT,hd.DiaChi \n"
                 + "from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT\n"
                 + "join TrangThai tt on hd.MaTT = tt.MaTT \n"
                 + "join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG\n"
@@ -368,11 +372,11 @@ public class Repo_HoaDon {
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setObject(1, ma );
+            ps.setObject(1, ma);
             rs = ps.executeQuery();
             while (rs.next()) {
-                String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc;
-                double giadau, giagiam, giacuoi;
+                String hd, kh, pgg, httt, tt, ngay, ten, sdt, dc, giacuoi;
+                double giadau, giagiam;
                 int stt = rs.getInt(1);
                 hd = rs.getString(2);
                 kh = rs.getString(3);
@@ -382,7 +386,7 @@ public class Repo_HoaDon {
                 ngay = rs.getString(7);
                 giadau = rs.getDouble(8);
                 giagiam = rs.getDouble(9);
-                giacuoi = rs.getDouble(10);
+                giacuoi = rs.getString(10);
                 ten = rs.getString(11);
                 sdt = rs.getString(12);
                 dc = rs.getString(13);
@@ -393,5 +397,5 @@ public class Repo_HoaDon {
             return null;
         }
     }
-    
+
 }

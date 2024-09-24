@@ -20,13 +20,13 @@ public class Model_HDCT {
     private String mauGong;
     private String kichCo;
     private int soLuong;
-    private double donGia;
-    private double thanhTien;
+    private String donGia;
+    private String thanhTien;
 
     public Model_HDCT() {
     }
 
-    public Model_HDCT(int STT, String tenSP, String thuongHieu, String kieuDang, String loaiMatKinh, String mauMatKinh, String chatLieuMatKinh, String chatLieuGong, String mauGong, String kichCo, int soLuong, double donGia, double thanhTien) {
+    public Model_HDCT(int STT, String tenSP, String thuongHieu, String kieuDang, String loaiMatKinh, String mauMatKinh, String chatLieuMatKinh, String chatLieuGong, String mauGong, String kichCo, int soLuong, String donGia, String thanhTien) {
         this.stt = STT;
         this.tenSP = tenSP;
         this.thuongHieu = thuongHieu;
@@ -130,25 +130,22 @@ public class Model_HDCT {
         this.soLuong = soLuong;
     }
 
-    public double getDonGia() {
+    public String getDonGia() {
         return donGia;
     }
 
-    public void setDonGia(double donGia) {
+    public void setDonGia(String donGia) {
         this.donGia = donGia;
     }
 
-    public double getThanhTien() {
+    public String getThanhTien() {
         return thanhTien;
     }
 
-    public void setThanhTien(double thanhTien) {
+    public void setThanhTien(String thanhTien) {
         this.thanhTien = thanhTien;
     }
 
-    
-
-    
 
     public Object[] toHDCT() {
         return new Object[]{this.getStt(),this.getTenSP(),this.getThuongHieu(),this.getKieuDang(),this.getLoaiMatKinh(),this.getMauMatKinh(),this.getChatLieuMatKinh(),this.getChatLieuGong(),this.getMauGong(),this.getKichCo(),this.getSoLuong(),this.getDonGia(),this.getTenSP()};

@@ -1,5 +1,4 @@
-Create Database P
-ro1041_Nhom4
+Create Database Pro1041_Nhom4
 use Pro1041_Nhom4
 -- Bang san pham
 create table SanPham(
@@ -198,7 +197,7 @@ create table LichSuHoaDon(
 
 delete from HoaDonChiTiet
 
-select hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi 
+select hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###') as 'GiaCuoiCung',hd.TenKhachHang,hd.SDT,hd.DiaChi 
 from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT
 join TrangThai tt on hd.MaTT = tt.MaTT 
 join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG
@@ -207,7 +206,7 @@ select ROW_NUMBER() over(order by MaLSHD) as STT, lshd.MaNV,cv.TenCV,lshd.NgayTh
 from LichSuHoaDon lshd join CongViec cv on lshd.MaCV = cv.MaCV
 where lshd.MaHD = 'HD01'
 
-select ROW_NUMBER() over(order by MaHDCT) as STT, sp.TenSP,th.TenTH,kd.TenKD,lmk.TenLMK,mmk.TenMMK,clmk.TenCLMK,clg.TenCLG,mg.TenMG,Kc.TenKC,hdct.SoLuong,hdct.DonGia,hdct.SoLuong * hdct.DonGia as 'Thanh Tien'
+select ROW_NUMBER() over(order by MaHDCT) as STT, sp.TenSP,th.TenTH,kd.TenKD,lmk.TenLMK,mmk.TenMMK,clmk.TenCLMK,clg.TenCLG,mg.TenMG,Kc.TenKC,hdct.SoLuong,FORMAT(CAST(hdct.DonGia AS DECIMAL(12,0)), '#,###.###') as DonGia,FORMAT(CAST(hdct.SoLuong * hdct.DonGia AS DECIMAL(12,0)), '#,###.###') as 'Thanh Tien'
 from HoaDonChiTiet hdct join SanPhamChiTiet spct on hdct.MaSPCT = spct.MaSPCT
 join SanPham sp on sp.MaSP = spct.MaSP
 join ThuongHieu th on spct.MaTH = th.MaTH
@@ -222,34 +221,34 @@ join HoaDon hd on hd.MaHD = hdct.MaHD
 where hdct.MaHD = ?
 
 --Tìm kiếm hoa don
-select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi 
+select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###'),hd.TenKhachHang,hd.SDT,hd.DiaChi 
 from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT
 join TrangThai tt on hd.MaTT = tt.MaTT 
 join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG
-where hd.MaHD like ? or hd.TenKhachHang like ? or hd.MaKH like ?
+where hd.MaHD like ? or hd.TenKhachHang like ? or hd.MaKH like ? or hd.SDT like ?
 
 --Lọc theo ngày
-select ROW_NUMBER() over(order by MaHD) as STT,hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi 
+select ROW_NUMBER() over(order by MaHD) as STT,hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###'),hd.TenKhachHang,hd.SDT,hd.DiaChi 
 from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT
 join TrangThai tt on hd.MaTT = tt.MaTT 
 join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG
 where hd.NgayTao = CONVERT(VARCHAR(10), GETDATE(), 111)
 
-select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi 
+select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###'),hd.TenKhachHang,hd.SDT,hd.DiaChi 
 from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT
 join TrangThai tt on hd.MaTT = tt.MaTT 
 join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG
 where hd.NgayTao <= CONVERT(VARCHAR(10), GETDATE(), 111) and hd.NgayTao >= CONVERT(VARCHAR(10), dateadd(DAY,-3,CONVERT(VARCHAR(10), GETDATE(), 111)), 111)
 
 -- Sap xep tang dan
-select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi 
+select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###'),hd.TenKhachHang,hd.SDT,hd.DiaChi 
 from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT
 join TrangThai tt on hd.MaTT = tt.MaTT 
 join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG
 where hd.NgayTao = CONVERT(VARCHAR(10), GETDATE(), 111)
 order by hd.GiaCuoiCung asc
 
-select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi 
+select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###'),hd.TenKhachHang,hd.SDT,hd.DiaChi 
 from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT
 join TrangThai tt on hd.MaTT = tt.MaTT 
 join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG
@@ -257,22 +256,22 @@ where hd.NgayTao <= CONVERT(VARCHAR(10), GETDATE(), 111) and hd.NgayTao >= CONVE
 order by hd.GiaCuoiCung asc
 
 -- Sap xep giam dan
-select ROW_NUMBER() over(order by MaHD) as STT hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi 
+select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###'),hd.TenKhachHang,hd.SDT,hd.DiaChi 
 from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT
 join TrangThai tt on hd.MaTT = tt.MaTT 
 join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG
 where hd.NgayTao = CONVERT(VARCHAR(10), GETDATE(), 111)
 order by hd.GiaCuoiCung desc
 
-select ROW_NUMBER() over(order by MaHD) as STT hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,hd.GiaCuoiCung,hd.TenKhachHang,hd.SDT,hd.DiaChi 
+select ROW_NUMBER() over(order by MaHD) as STT, hd.MaHD,hd.MaKH,hd.MaPGG,httt.TenHTTT,tt.TenTT,hd.NgayTao,hd.GiaBanDau,hd.GiaGiam,FORMAT(CAST(hd.GiaCuoiCung AS DECIMAL(12,0)), '#,###.###'),hd.TenKhachHang,hd.SDT,hd.DiaChi 
 from HoaDon hd join HinhThucThanhToan httt on hd.MaHTTT = httt.MaHTTT
 join TrangThai tt on hd.MaTT = tt.MaTT 
 join PhieuGiamGia pgg on hd.MaPGG = pgg.MaPGG
 where hd.NgayTao <= CONVERT(VARCHAR(10), GETDATE(), 111) and hd.NgayTao >= CONVERT(VARCHAR(10), dateadd(DAY,-3,CONVERT(VARCHAR(10), GETDATE(), 111)), 111)
-order by hd.GiaCuoiCung asc
+order by hd.GiaCuoiCung desc
 
-Insert into HoaDon(MaHD,NgayTao,GiaCuoiCung)
-values('HD04','2024-09-21',2000000)
+Insert into HoaDon(MaHD,MaPGG,MaHTTT,MaTT,NgayTao,GiaCuoiCung,TenKhachHang)
+values('HD09','PGG02',0,1,'2024-09-22',600000,N'Nguyễn Hữu Đức Mạnh')
 
 select * from HoaDon
 order by GiaCuoiCung desc

@@ -18,7 +18,7 @@ public class Model_HoaDon {
     private String ngayTao;
     private double giaBanDau;
     private double giaGiam;
-    private double giaCuoiCung;
+    private String giaCuoiCung;
     private String tenKhachHang;
     private String sdt;
     private String diaChi;
@@ -30,7 +30,7 @@ public class Model_HoaDon {
         this.tenTT = tenTT;
     }
 
-    public Model_HoaDon(int stt, String maHD, String maKH, String maPGG, String tenHTTT, String tenTT, String ngayTao, double giaBanDau, double giaGiam, double giaCuoiCung, String tenKhachHang, String sdt, String diaChi) {
+    public Model_HoaDon(int stt, String maHD, String maKH, String maPGG, String tenHTTT, String tenTT, String ngayTao, double giaBanDau, double giaGiam, String giaCuoiCung, String tenKhachHang, String sdt, String diaChi) {
         this.stt = stt;
         this.maHD = maHD;
         this.maKH = maKH;
@@ -49,7 +49,7 @@ public class Model_HoaDon {
     
     
 
-    public Model_HoaDon(String maKH, String maPGG, String tenHTTT, String tenTT, String ngayTao, double giaBanDau, double giaGiam, double giaCuoiCung, String tenKhachHang, String sdt, String diaChi) {
+    public Model_HoaDon(String maKH, String maPGG, String tenHTTT, String tenTT, String ngayTao, double giaBanDau, double giaGiam, String giaCuoiCung, String tenKhachHang, String sdt, String diaChi) {
         this.maKH = maKH;
         this.maPGG = maPGG;
         this.tenHTTT = tenHTTT;
@@ -139,11 +139,11 @@ public class Model_HoaDon {
         this.giaGiam = giaGiam;
     }
 
-    public double getGiaCuoiCung() {
+    public String getGiaCuoiCung() {
         return giaCuoiCung;
     }
 
-    public void setGiaCuoiCung(double giaCuoiCung) {
+    public void setGiaCuoiCung(String giaCuoiCung) {
         this.giaCuoiCung = giaCuoiCung;
     }
 

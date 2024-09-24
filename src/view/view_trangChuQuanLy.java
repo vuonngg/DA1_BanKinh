@@ -220,17 +220,17 @@ public class view_trangChuQuanLy extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_khachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_khachHangActionPerformed
-                bangHienThi.removeAll();
+        bangHienThi.removeAll();
         viewKhachHang kh = new viewKhachHang();
         bangHienThi.add(kh).setVisible(true);
     }//GEN-LAST:event_btn_khachHangActionPerformed
 
     private void btn_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thoatActionPerformed
-    int check = JOptionPane.showConfirmDialog(this, "Thoát?");
-    if(check == 0){
-        System.exit(0);
-    }
-        
+        int check = JOptionPane.showConfirmDialog(this, "Thoát?");
+        if (check == 0) {
+            System.exit(0);
+        }
+
     }//GEN-LAST:event_btn_thoatActionPerformed
 
     private void btn_phieuGiamGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_phieuGiamGiaActionPerformed
@@ -240,25 +240,25 @@ public class view_trangChuQuanLy extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_phieuGiamGiaActionPerformed
 
     private void btn_NhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NhanVienActionPerformed
-                bangHienThi.removeAll();
+        bangHienThi.removeAll();
         viewNhanVien nv = new viewNhanVien();
         bangHienThi.add(nv).setVisible(true);
     }//GEN-LAST:event_btn_NhanVienActionPerformed
 
     private void btn_sanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sanPhamActionPerformed
-                bangHienThi.removeAll();
+        bangHienThi.removeAll();
         viewSanPham sp = new viewSanPham();
         bangHienThi.add(sp).setVisible(true);
     }//GEN-LAST:event_btn_sanPhamActionPerformed
 
     private void btn_hoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hoaDonActionPerformed
-                bangHienThi.removeAll();
+        bangHienThi.removeAll();
         viewHoaDon hd = new viewHoaDon();
         bangHienThi.add(hd).setVisible(true);
     }//GEN-LAST:event_btn_hoaDonActionPerformed
 
     private void btn_banHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_banHangActionPerformed
-                     bangHienThi.removeAll();
+        bangHienThi.removeAll();
         viewBanHang bh = new viewBanHang();
         bangHienThi.add(bh).setVisible(true);
     }//GEN-LAST:event_btn_banHangActionPerformed
@@ -300,7 +300,7 @@ public class view_trangChuQuanLy extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
                 view_trangChuQuanLy view = new view_trangChuQuanLy();
                 view.pack();
                 view.setVisible(true);
