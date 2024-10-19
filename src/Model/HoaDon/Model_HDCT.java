@@ -20,14 +20,14 @@ public class Model_HDCT {
     private String mauGong;
     private String kichCo;
     private int soLuong;
-    private String donGia;
-    private String thanhTien;
+    private double donGia;
+    private double thanhTien;
 
     public Model_HDCT() {
     }
 
-    public Model_HDCT(int STT, String tenSP, String thuongHieu, String kieuDang, String loaiMatKinh, String mauMatKinh, String chatLieuMatKinh, String chatLieuGong, String mauGong, String kichCo, int soLuong, String donGia, String thanhTien) {
-        this.stt = STT;
+    public Model_HDCT(int stt, String tenSP, String thuongHieu, String kieuDang, String loaiMatKinh, String mauMatKinh, String chatLieuMatKinh, String chatLieuGong, String mauGong, String kichCo, int soLuong, double donGia, double thanhTien) {
+        this.stt = stt;
         this.tenSP = tenSP;
         this.thuongHieu = thuongHieu;
         this.kieuDang = kieuDang;
@@ -41,6 +41,8 @@ public class Model_HDCT {
         this.donGia = donGia;
         this.thanhTien = thanhTien;
     }
+
+    
 
     public int getStt() {
         return stt;
@@ -130,24 +132,26 @@ public class Model_HDCT {
         this.soLuong = soLuong;
     }
 
-    public String getDonGia() {
+    public double getDonGia() {
         return donGia;
     }
 
-    public void setDonGia(String donGia) {
+    public void setDonGia(double donGia) {
         this.donGia = donGia;
     }
 
-    public String getThanhTien() {
+    public double getThanhTien() {
         return thanhTien;
     }
 
-    public void setThanhTien(String thanhTien) {
+    public void setThanhTien(double thanhTien) {
         this.thanhTien = thanhTien;
     }
 
+    
+
 
     public Object[] toHDCT() {
-        return new Object[]{this.getStt(),this.getTenSP(),this.getThuongHieu(),this.getKieuDang(),this.getLoaiMatKinh(),this.getMauMatKinh(),this.getChatLieuMatKinh(),this.getChatLieuGong(),this.getMauGong(),this.getKichCo(),this.getSoLuong(),this.getDonGia(),this.getTenSP()};
+        return new Object[]{this.getStt(),this.getTenSP(),this.getThuongHieu(),this.getKieuDang(),this.getLoaiMatKinh(),this.getMauMatKinh(),this.getChatLieuMatKinh(),this.getChatLieuGong(),this.getMauGong(),this.getKichCo(),this.getSoLuong(),this.getDonGia(),this.getThanhTien()};
     }
 }

@@ -4,11 +4,22 @@
  */
 package view;
 
+import Model.DangNhap;
+import Model.NhanVien.NhanVien;
+import Repositories.rp_DangNhap;
+import Repositories.rp_NhanVien;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LEGION 5
  */
 public class view_dangNhap extends javax.swing.JFrame {
+
+    rp_NhanVien rp2 = new rp_NhanVien();
+    rp_DangNhap rp = new rp_DangNhap();
+    int vaiTro = 0;
+    String userName = null;
 
     /**
      * Creates new form view_dangNhap
@@ -16,6 +27,7 @@ public class view_dangNhap extends javax.swing.JFrame {
     public view_dangNhap() {
         initComponents();
         this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -28,18 +40,19 @@ public class view_dangNhap extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        txtMK = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        taiKhoan = new javax.swing.JTextField();
-        matKhau = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtTK = new javax.swing.JTextField();
+        btnDN = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(txtMK, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 160, -1));
 
         jLabel2.setFont(new java.awt.Font("Showcard Gothic", 1, 30)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -55,19 +68,18 @@ public class view_dangNhap extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tài Khoản");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
-        jPanel1.add(taiKhoan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 150, -1));
-        jPanel1.add(matKhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 160, -1));
+        jPanel1.add(txtTK, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 160, -1));
 
-        jButton1.setBackground(new java.awt.Color(222, 210, 210));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 102, 255));
-        jButton1.setText("Đăng nhập");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDN.setBackground(new java.awt.Color(222, 210, 210));
+        btnDN.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnDN.setForeground(new java.awt.Color(0, 102, 255));
+        btnDN.setText("Đăng nhập");
+        btnDN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDNActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 150, 40));
+        jPanel1.add(btnDN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 150, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo.jpeg"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 70, 50));
@@ -93,9 +105,37 @@ public class view_dangNhap extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnDNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        userName = txtTK.getText();
+        String passWord = new String(txtMK.getPassword());
+        DangNhap dn = rp.getRole(userName, passWord);
+        if (dn.getUserName() != null) {
+            if (dn.isRole() == true) {
+                vaiTro = 1;
+                JOptionPane.showMessageDialog(this, "Dang nhap thanh cong quan ly");
+                view_trangChu view = new view_trangChu(this);
+                viewBanHang view1 = new viewBanHang(view);
+                NhanVien nv = rp2.getNV(userName);
+                view.maNV(nv.getMaNV());
+                view.tenNV(nv.getHoTen());
+
+                view.setVisible(true);
+                this.dispose();
+            } else {
+                vaiTro = 2;
+                JOptionPane.showMessageDialog(this, "Dang nhap thanh cong nhan vien");
+                view_trangChu view = new view_trangChu(this);
+                NhanVien nv = rp2.getNV(userName);
+                view.maNV(nv.getMaNV());
+                view.tenNV(nv.getHoTen());
+                view.setVisible(true);
+                this.dispose();
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Đăng nhập thất bại");
+        }
+    }//GEN-LAST:event_btnDNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,14 +173,14 @@ public class view_dangNhap extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnDN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField matKhau;
-    private javax.swing.JTextField taiKhoan;
+    private javax.swing.JPasswordField txtMK;
+    private javax.swing.JTextField txtTK;
     // End of variables declaration//GEN-END:variables
 }
